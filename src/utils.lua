@@ -2568,12 +2568,12 @@ function SMODS.change_free_rerolls(mod)
 end
 
 function SMODS.signed(val)
-    return val and (val > 0 and '+'..val or ''..val) or '0'
+    return val and (val >= 0 and '+'..val or ''..val) or '+0'
 end
 
 function SMODS.signed_dollars(val)
     local sign = (val or 0) < 0 and '-' or ''
-    return val and sign..'$'..math.abs(val) or '0'
+    return val and sign..'$'..math.abs(val) or '$0'
 end
 
 function SMODS.multiplicative_stacking(base, perma)
@@ -4011,7 +4011,7 @@ SMODS.mod_score = function(score_mod)
     if score_mod.add and score_mod.add ~= 0 then
         score_cal = score_cal + score_mod.add
         table.insert(G.SCORE_DISPLAY_QUEUE, old)
-        score_fx[#score_fx+1] = { key = "a_score", value = score_mod.add, sound = "gong", message_key = 'score_message'}
+        score_fx[#score_fx+1] = { key = "a_score", value = SMODS.signed(score_mod.add), sound = "gong", message_key = 'score_message'}
     end
     -- TARGET: lower priority score operation
     G.GAME.chips = score_cal
@@ -4054,7 +4054,7 @@ SMODS.mod_blind_size = function(blind_size_mod)
     if blind_size_mod.add and blind_size_mod.add ~= 0 then
         blind_size_cal = blind_size_cal + blind_size_mod.add
         table.insert(G.BLIND_SIZE_DISPLAY_QUEUE, blind_size_cal)
-        blind_size_fx[#blind_size_fx+1] = { key = "a_blind_size", value = blind_size_mod.add, sound = "timpani", message_key = 'blind_size_message'}
+        blind_size_fx[#blind_size_fx+1] = { key = "a_blind_size", value = SMODS.signed(blind_size_mod.add), sound = "timpani", message_key = 'blind_size_message'}
     end
     -- TARGET: lower priority blind_size operation
     G.GAME.blind.chips = blind_size_cal
