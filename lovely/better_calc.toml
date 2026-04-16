@@ -1751,14 +1751,10 @@ G.E_MANAGER:add_event(Event({
             front = pseudorandom_element(G.P_CARDS, pseudoseed('marb_fr')),
             center = G.P_CENTERS.m_stone}, G.play, nil, nil, {G.C.SECONDARY_SET.Enhanced})
         SMODS.calculate_effect({message = localize('k_plus_stone'), colour = G.C.SECONDARY_SET.Enhanced}, context.blueprint_card or self)
-        G.E_MANAGER:add_event(Event({
-        func = function()
-            draw_card(G.play,G.deck, 90,'up', nil)
-            return true
-        end}))
         playing_card_joker_effects({card})
         return true
     end}))
+draw_card(G.play,G.deck, 90,'up', nil)
 '''
 # DNA
 [[patches]]
