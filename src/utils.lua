@@ -734,7 +734,7 @@ end
 
 function SMODS.poll_seal(args)
     -- Use SMODS object weight system when enabled
-    if SMODS.optional_features.object_weights then args.type = 'Seal'; return SMODS.poll_object(args) end
+    if SMODS.optional_features.object_weights then args.type = 'Seal'; args.pool = args.options or nil; return SMODS.poll_object(args) end
 
     args = args or {}
     local key = args.key or 'stdseal'
@@ -912,6 +912,7 @@ function SMODS.poll_rarity(_pool_key, _rand_key)
 end
 
 function SMODS.poll_enhancement(args)
+    if SMODS.optional_features.object_weights then args.type = 'Enhanced'; args.pool = args.options or nil; return SMODS.poll_object(args) end
     args = args or {}
     local key = args.key or 'std_enhance'
     local mod = args.mod or 1
