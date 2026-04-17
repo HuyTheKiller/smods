@@ -4049,12 +4049,12 @@ SMODS.mod_blind_size = function(blind_size_mod)
     if blind_size_mod.mult then
         local absoluted = math.abs(blind_size_mod.mult)
         blind_size_cal = blind_size_cal * blind_size_mod.mult
-        table.insert(G.BLIND_SIZE_DISPLAY_QUEUE, blind_size_cal)
+        table.insert(G.BLIND_SIZE_DISPLAY_QUEUE, old)
         blind_size_fx[#blind_size_fx+1] = {key = blind_size_mod.mult < 0 and "a_xblind_size_minus" or "a_xblind_size", value = absoluted, sound = "xblindsize", message_key = "xblind_size_message"}
     end
     if blind_size_mod.add and blind_size_mod.add ~= 0 then
         blind_size_cal = blind_size_cal + blind_size_mod.add
-        table.insert(G.BLIND_SIZE_DISPLAY_QUEUE, blind_size_cal)
+        table.insert(G.BLIND_SIZE_DISPLAY_QUEUE, old)
         blind_size_fx[#blind_size_fx+1] = { key = "a_blind_size", value = SMODS.signed(blind_size_mod.add), sound = "timpani", message_key = 'blind_size_message'}
     end
     -- TARGET: lower priority blind_size operation
