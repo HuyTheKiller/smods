@@ -2449,7 +2449,7 @@ function get_pack(_key, _type)
 
 	-- Use SMODS object weight system when enabled
 	if SMODS.optional_features.object_weights then
-		return G.P_CENTERS[SMODS.poll_object({type = 'Booster',
+		return G.P_CENTERS[SMODS.poll_object({type = 'Booster', seed = (_key or 'pack_generic')..G.GAME.round_resets.ante,
             filter = _type and function(pool)
 				local all_unavailable = true
                 for _, v in ipairs(pool) do

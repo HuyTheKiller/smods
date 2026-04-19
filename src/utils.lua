@@ -382,6 +382,7 @@ function SMODS.create_card(t)
     end
     -- Support SMODS.Attributes
     if not t.key and t.attributes then
+        t.append = t.key_append
         t.key = SMODS.poll_object(t)
     end
     if not t.area and t.key and G.P_CENTERS[t.key] then
@@ -2499,7 +2500,7 @@ function SMODS.get_next_vouchers(vouchers)
 
         -- Use SMODS object weight system when enabled
         if SMODS.optional_features.object_weights then
-            center = SMODS.poll_object({type = 'Voucher'})
+            center = SMODS.poll_object({type = 'Voucher', seed = _pool_key})
         else
             center = pseudorandom_element(_pool, pseudoseed(_pool_key))
             local it = 1
