@@ -2880,7 +2880,8 @@ function SMODS.draw_cards(hand_space)
 end
 
 function SMODS.showman(card_key)
-    if SMODS.create_card_allow_duplicates or next(SMODS.find_card('j_ring_master')) then
+    if SMODS.create_card_allow_duplicates or SMODS.poll_object_allow_duplicates
+        or next(SMODS.find_card('j_ring_master')) then
         return true
     end
     return false
