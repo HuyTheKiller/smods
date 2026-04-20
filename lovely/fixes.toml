@@ -916,3 +916,16 @@ pattern = '''{n=G.UIT.O, config={object = DynaText({string = {card_center.set ==
 position = "at"
 payload = '''{n=G.UIT.O, config={object = DynaText({string = { SMODS.create_unlock_text(card_center) }, colours = { G.C.BLUE }, shadow = true, rotate = true, bump = true, pop_in = 0.3, pop_in_rate = 2, scale = 1.2})}}'''
 match_indent = true
+
+# Fix undiscovered cards having sets hard coded
+[[patches]]
+[patches.pattern]
+target = 'card.lua'
+match_indent = true
+position = 'at'
+pattern = '''
+(self.ability.set == 'Joker' or self.ability.set == 'Edition' or self.ability.consumeable or self.ability.set == 'Voucher' or self.ability.set == 'Booster') and
+'''
+payload = '''
+(self.ability.consumeable or SMODS.UndiscoveredCompat[self.ability.set]) and
+'''
