@@ -413,8 +413,10 @@ function SMODS.create_card(t)
     SMODS.bypass_create_card_discovery_center = t.bypass_discovery_center
     SMODS.set_create_card_front = G.P_CARDS[t.front]
     SMODS.create_card_allow_duplicates = t.allow_duplicates
+    SMODS.create_card_scale = t.scale and { w = t.scale.w or 1, h = t.scale.h or 1 }
     SMODS.create_card_silent_edition = t.silent.edition
     local _card = create_card(t.set, t.area, t.legendary, t.rarity, t.skip_materialize, t.soulable, t.key, t.key_append)
+    SMODS.create_card_scale = nil
     SMODS.bypass_create_card_edition = nil
     SMODS.bypass_create_card_discover = nil
     SMODS.bypass_create_card_discovery_center = nil
